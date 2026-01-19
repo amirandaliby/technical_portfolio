@@ -1,41 +1,61 @@
-// @flow strict
-import Link from "next/link";
+"use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { BsPersonFill, BsCodeSlash, BsFolderFill, BsFillTelephoneFill } from "react-icons/bs";
+import { MdSchool, MdLightMode, MdDarkMode } from "react-icons/md";
+import { IoMdTime } from "react-icons/io";
+import { useTheme } from "next-themes";
 
 function Navbar() {
-  return (
-    <nav className="bg-transparent">
-      <div className="flex items-center justify-between py-5">
-        <div className="flex flex-shrink-0 items-center">
-          <Link
-            href="/"
-            className=" text-[#16f2b3] text-3xl font-bold">
-            Amir Andaliby
-          </Link>
-        </div>
+  const pathname = usePathname();
+  const [navigation, setNavigation] = useState(false);
+  const { theme, setTheme } = useTheme();
 
-        <ul className="mt-4 flex h-screen max-h-0 w-full flex-col items-start text-sm opacity-0 md:mt-0 md:h-auto md:max-h-screen md:w-auto md:flex-row md:space-x-1 md:border-0 md:opacity-100" id="navbar-default">
-          <li>
-            <Link className="block px-4 py-2 no-underline outline-none hover:no-underline" href="/#about">
-              <div className="text-sm text-white transition-colors duration-300 hover:text-pink-600">ABOUT</div>
-            </Link>
-          </li>
-          <li>
-            <Link className="block px-4 py-2 no-underline outline-none hover:no-underline" href="/#experience"><div className="text-sm text-white transition-colors duration-300 hover:text-pink-600">EXPERIENCE</div></Link>
-          </li>
-          <li>
-            <Link className="block px-4 py-2 no-underline outline-none hover:no-underline" href="/#skills"><div className="text-sm text-white transition-colors duration-300 hover:text-pink-600">SKILLS</div></Link>
-          </li>
-          <li>
-            <Link className="block px-4 py-2 no-underline outline-none hover:no-underline" href="/#education"><div className="text-sm text-white transition-colors duration-300 hover:text-pink-600">EDUCATION</div></Link>
-          </li>
-          <li>
-            <Link className="block px-4 py-2 no-underline outline-none hover:no-underline" href="/#projects"><div className="text-sm text-white transition-colors duration-300 hover:text-pink-600">PROJECTS</div></Link>
-          </li>
-        </ul>
+  useEffect(() => {
+    // Logic to handle active navigation link based on pathname
+  }, [pathname]);
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
+
+  return (
+    <nav>
+      <div className="navbar-content">
+        <Link href="/" className="navbar-logo">
+          SM
+        </Link>
+        <div className="navbar-links">
+          <Link href="/#hero" className={pathname === "/#hero" ? "active" : ""}>
+            <BsPersonFill /> <span>Home</span>
+          </Link>
+          <Link href="/#about" className={pathname === "/#about" ? "active" : ""}>
+            <BsCodeSlash /> <span>About</span>
+          </Link>
+          <Link href="/#experience" className={pathname === "/#experience" ? "active" : ""}>
+            <IoMdTime /> <span>Experience</span>
+          </Link>
+          <Link href="/#skills" className={pathname === "/#skills" ? "active" : ""}>
+            <BsCodeSlash /> <span>Skills</span>
+          </Link>
+          <Link href="/#projects" className={pathname === "/#projects" ? "active" : ""}>
+            <BsFolderFill /> <span>Projects</span>
+          </Link>
+          <Link href="/#education" className={pathname === "/#education" ? "active" : ""}>
+            <MdSchool /> <span>Education</span>
+          </Link>
+          <Link href="/#contact" className={pathname === "/#contact" ? "active" : ""}>
+            <BsFillTelephoneFill /> <span>Contact</span>
+          </Link>
+          <button onClick={toggleTheme} className="theme-toggle-button">
+            {theme === "light" ? <MdDarkMode /> : <MdLightMode />}
+          </button>
+        </div>
       </div>
     </nav>
   );
-};
+}
 
 export default Navbar;

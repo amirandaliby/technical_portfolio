@@ -11,6 +11,11 @@
 # next.js
 /.next/
 /out/
+.idea
+jsconfig.json
+next.config.js
+postcss.config.js
+tailwind.config.js
 
 # production
 /build
