@@ -1,7 +1,7 @@
-// @flow strict
+import React from 'react';
 import Link from 'next/link';
-import { CgGitFork } from "react-icons/cg";
-import { IoStar } from "react-icons/io5";
+import { IoStar } from 'react-icons/io5';
+import { CgGitFork } from 'react-icons/cg';
 
 function Footer() {
   return (
@@ -34,8 +34,8 @@ function Footer() {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
-};
+}
 
 export default Footer;
