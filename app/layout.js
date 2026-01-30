@@ -1,28 +1,19 @@
-"use client";
-import { Inter } from 'next/font/google';
-import './css/globals.scss';
-import { ThemeProvider } from 'next-themes';
-import Navbar from './components/navbar';
-import Footer from './components/footer';
-import ScrollToTop from './components/helper/scroll-to-top';
+import { Inter } from "next/font/google";
+import "./css/globals.scss";
+import LayoutClient from "./components/layout-client";
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: 'Personal Portfolio - SM',
-  description: 'This is the portfolio of Amir Andaliby',
+  title: "Personal Portfolio - SM",
+  description: "This is the portfolio of Amir Andaliby",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Navbar />
-          {children}
-          <ScrollToTop />
-          <Footer />
-        </ThemeProvider>
+        <LayoutClient>{children}</LayoutClient>
       </body>
     </html>
   );

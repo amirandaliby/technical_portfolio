@@ -103,6 +103,20 @@ node --version
 
 ## Deployment 🚀
 
+### Deploy on GitHub Pages (github.io)
+
+If you only see the README on your site, GitHub is deploying the **repo** instead of the **built site**. Fix it:
+
+1. On GitHub, open your repo → **Settings** → **Pages** (left sidebar).
+2. Under **Build and deployment** → **Source**, choose **GitHub Actions** (not "Deploy from a branch").
+3. Push a commit to `main`. The workflow builds the Next.js site and deploys it; after 1–2 minutes your portfolio will load at the Pages URL.
+
+Your site URL depends on the repo name:
+- Repo `amirandaliby.github.io` → https://amirandaliby.github.io/
+- Repo `developer-portfolio` or `technical_portfolio` → https://amirandaliby.github.io/developer-portfolio/ (or `/technical_portfolio/`)
+
+---
+
 Deploy on Vercel in minutes:
 
 1. **Push** your code to GitHub.  
