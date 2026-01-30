@@ -1,4 +1,4 @@
-# [Built Portfolio With GitHub](https://github.com/hetvishukla2001/developer-portfolio)
+# [Built Portfolio With GitHub](https://github.com/amirandaliby/technical_portfolio)
 
 ---
 
@@ -6,7 +6,7 @@
 
 Welcome! 🎉 This personal Developer Portfolio is built with Next.js & Tailwind CSS. It’s super easy to customize and deploy. Let’s get you up and running! 🚀
 
-**Live Demo:** https://hetvi-shukla.vercel.app/
+**Live Demo:** https://amirandaliby.github.io/
 
 ---
 
@@ -42,7 +42,7 @@ Welcome! 🎉 This personal Developer Portfolio is built with Next.js & Tailwind
 
 ![Screenshot](./public/image/screen.png)
 
-Check it out live: https://hetvi-shukla.vercel.app/
+Check it out live: https://amirandaliby.github.io/
 
 ---
 
@@ -66,8 +66,8 @@ node --version
 
 1. **Fork & Clone**  
    ```bash
-   git clone https://github.com/hetvishukla2001/developer-portfolio.git
-   cd developer-portfolio
+   git clone https://github.com/amirandaliby/technical_portfolio
+   cd technical_portfolio
    ```
 2. **Install**  
    ```bash
