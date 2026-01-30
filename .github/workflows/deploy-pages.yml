@@ -1,6 +1,11 @@
 # Build Next.js static export and deploy to GitHub Pages
-# After first push: repo Settings → Pages → Source: "GitHub Actions"
-# Site URL: https://<username>.github.io/<repo-name>/
+#
+# REQUIRED: repo Settings → Pages → Build and deployment → Source: "GitHub Actions"
+#
+# Your site URL depends on the repo name:
+#   - Repo named "amirandaliby.github.io" → https://amirandaliby.github.io/
+#   - Repo named "developer-portfolio"   → https://amirandaliby.github.io/developer-portfolio/
+#   - Repo named "technical_portfolio"  → https://amirandaliby.github.io/technical_portfolio/
 
 name: Deploy to GitHub Pages
 
@@ -42,6 +47,39 @@ jobs:
 
       - name: Add .nojekyll
         run: touch out/.nojekyll
+
+      # GitHub Pages requires index.html at the publish root. With basePath set,
+      # Next.js puts the app in out/<repo-name>/ so we add root index.html that redirects there.
+      - name: Ensure root index.html for GitHub Pages
+        run: |
+          if [ ! -f out/index.html ]; then
+            REPO_NAME="${{ github.event.repository.name }}"
+            # Redirect to subfolder where Next.js put the app (relative path from artifact root)
+            REDIRECT_PATH="${REPO_NAME}/"
+            cat > out/index.html << HTMLEOF
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="refresh" content="0;url=${REDIRECT_PATH}">
+            <title>Redirecting...</title>
+            <script>location.replace("${REDIRECT_PATH}" + location.hash);</script>
+          </head>
+          <body>
+            <p>Redirecting to <a href="${REDIRECT_PATH}">the portfolio</a>...</p>
+          </body>
+          </html>
+          HTMLEOF
+            echo "Created root index.html redirecting to ${REDIRECT_PATH}"
+          else
+            echo "out/index.html already exists (user site)"
+          fi
+
+      - name: Verify index.html at publish root
+        run: |
+          ls -la out/
+          test -f out/index.html || (echo "ERROR: index.html missing at publish root" && exit 1)
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
